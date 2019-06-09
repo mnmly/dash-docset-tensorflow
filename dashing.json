@@ -1,14 +1,14 @@
 {
-    "name": "TensorFlow",
-    "package": "TensorFlow",
+    "name": "TensorFlow.js",
+    "package": "TensorFlow.js",
     "index": "index.html",
-    "externalURL": "https://www.tensorflow.org/",
+    "externalURL": "https://www.tensorflow.org/js/",
     "selectors": {
-        "h1.dash-class": "Class",
-        "h1.dash-function": "Function",
-				"h3.dash-method code": "Method"
+        ".symbol-header>[name*=\"class:\"]": "Class",
+	".method-list .symbol-link": "Method"
     },
     "ignore": [
+        ".toc"
     ],
     "allowJS": true,
     "icon32x32": "icon@2x.png",

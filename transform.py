@@ -11,7 +11,14 @@ import magic
 
 fname = sys.argv[1]
 if not fname.endswith('.html'):
-    sys.exit(0)
+    if fname.endswith('.css'):
+        f = open(fname, 'rb')
+        css = f.read().decode('utf-8')
+        css = css.replace('Roboto', 'Roboto, SF Mono, Monaco')
+        with open(fname, 'wb') as f:
+            f.write(css.encode('utf-8')) 
+    else:
+        sys.exit(0)
 
 if 'gzip compressed' in magic.from_file(fname):
     import gzip
@@ -24,7 +31,7 @@ html = f.read().decode('utf-8')
 def get_level():
     dirname = os.path.dirname(fname)
     cnt = 0
-    while not os.path.isfile(os.path.join(dirname, 'main.css')):
+    while not os.path.isfile(os.path.join(dirname, 'api.css')):
         dirname = os.path.join(dirname, '..')
         cnt += 1
     return cnt
@@ -44,6 +51,7 @@ def remove(*args, **kwargs):
 remove('header')
 remove('footer')
 remove('nav')
+remove('div', { 'class': 'toc'})
 remove('devsite-header')
 remove('devsite-content-footer')
 remove('script')
@@ -51,10 +59,14 @@ remove('script')
 # point to the new css
 allcss = soup.findAll('link', attrs={'rel': 'stylesheet'})
 if allcss:
-    css = allcss[0]
-    css['href'] = ''.join(['../'] * level) + 'main.css'
-    for k in allcss[1:]:
-        k.extract()
+    for _css in allcss:
+        print(_css['href'])
+        if '/css/vendor/' in _css['href']:
+            _css['href'] = 'https://js.tensorflow.org/css/vendor/' + _css['href'].split('/')[-1]
+        elif '/css/' in _css['href']:
+            _css['href'] = ''.join(['../'] * level) + _css['href'].split('/')[-1]
+        else:
+            _css.extract()
 
 
 try:
@@ -63,7 +75,7 @@ try:
         title_node = title_node[0]
 
         # mark method
-        method_node = soup.findAll('h2', attrs={'id': 'methods'})
+        method_node = soup.findAll('h2', attrs={'class': 'method'})
         if method_node:
             title_node.attrs['class'] = 'dash-class'
             title = title_node.getText().strip()
