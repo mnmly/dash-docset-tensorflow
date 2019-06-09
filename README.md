@@ -6,7 +6,7 @@ View TensorFlow docs in the [dash](https://kapeli.com/dash)/[zeal](https://githu
 
 To use, you can add this feed in Dash/Zeal:
 ```
-https://raw.githubusercontent.com/ppwwyyxx/dash-docset-tensorflow/master/TensorFlow.xml
+https://raw.githubusercontent.com/mnmly/dash-docset-tfjs/master/TensorFlow-js.xml
 ```
 Or download the latest release [here](https://github.com/mnmly/dash-docset-tfjs/releases).
 
