@@ -17,7 +17,6 @@ if not fname.endswith('.html'):
         css = css.replace('Roboto', 'Roboto, SF Mono, Monaco')
         with open(fname, 'wb') as f:
             f.write(css.encode('utf-8')) 
-            sys.exit(0)
     elif fname.endswith('.json'):
         f = open(fname, 'rb')
         css = f.read().decode('utf-8')
@@ -71,7 +70,7 @@ if allcss:
         print(_css['href'])
         if '/css/vendor/' in _css['href']:
             _css['href'] = 'https://js.tensorflow.org/css/vendor/' + _css['href'].split('/')[-1]
-        elif '/css/' in _css['href']:
+        elif '.css' in _css['href']:
             _css['href'] = ''.join(['../'] * level) + _css['href'].split('/')[-1]
         else:
             _css.extract()

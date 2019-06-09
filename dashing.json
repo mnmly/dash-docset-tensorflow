@@ -5,7 +5,8 @@
     "externalURL": "https://www.tensorflow.org/js/",
     "selectors": {
         ".symbol-header>[name*=\"class:\"]": "Class",
-	".method-list .symbol-link": "Method"
+	    ".method-list .symbol-link": "Method",
+	    ".function .symbol-link": "Function"
     },
     "ignore": [
         ".toc"

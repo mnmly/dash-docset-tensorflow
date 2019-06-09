@@ -2,18 +2,18 @@
 
 tfjs_version = 1.1.2
 
-build: download-static preprocess build-docset xml
+build: download-static preprocess build-docset xml tarball
 
-download-static: copy-static
+download-static:
 	@wget -nc -np --compression=gzip --domains=js.tensorflow.org -e robots=off --adjust-extension -r 'https://js.tensorflow.org/api/latest/' && wget https://js.tensorflow.org/css/api.css -O js.tensorflow.org/api.css && wget https://js.tensorflow.org/css/layout.css -O js.tensorflow.org/layout.css
 
-copy-static:
+copy-static: download-static
 	@cp dashing.json icon*.png js.tensorflow.org/.
 
-preprocess preprocess:
-	@export TFJS_VERSION="${tfjs_version}" && ./preprocess.sh js.tensorflow.org
+preprocess: copy-static
+	@export TFJS_VERSION='${tfjs_version}' && ./preprocess.sh js.tensorflow.org
 
-build-docset:
+build-docset: preprocess
 	@cd js.tensorflow.org && dashing build && cd ../
 
 install:
