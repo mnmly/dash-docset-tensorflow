@@ -4,7 +4,7 @@
 
 View TensorFlow docs in the [dash](https://kapeli.com/dash)/[zeal](https://github.com/zealdocs/zeal) offline docset browser.
 
-To use, you can add this feed in Dash/Zeal:
+To use, you can add this feed in [Dash](dash-feed:"https%3A%2F%2Fraw.githubusercontent.com%2Fmnmly%2Fdash-docset-tfjs%2Fmaster%2FTensorFlow-js.xml")/Zeal:
 ```
 https://raw.githubusercontent.com/mnmly/dash-docset-tfjs/master/TensorFlow-js.xml
 ```
