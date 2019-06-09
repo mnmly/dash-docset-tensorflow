@@ -23,6 +23,7 @@ which parallel > /dev/null 2>&1 && {
 }
 
 find "$1" -type f -name "*.css" -exec ./transform.py {} \;
+find "$1" -type f -name "*.json" -exec ./transform.py {} \;
 #find "$1" -type f -name "*.mp4" -delete
 
 # rename case-insensitive duplicates

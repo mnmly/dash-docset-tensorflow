@@ -1,5 +1,5 @@
 {
-    "name": "TensorFlow.js",
+    "name": "TensorFlow.js ${version}",
     "package": "TensorFlow.js",
     "index": "index.html",
     "externalURL": "https://www.tensorflow.org/js/",

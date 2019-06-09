@@ -17,6 +17,14 @@ if not fname.endswith('.html'):
         css = css.replace('Roboto', 'Roboto, SF Mono, Monaco')
         with open(fname, 'wb') as f:
             f.write(css.encode('utf-8')) 
+            sys.exit(0)
+    elif fname.endswith('.json'):
+        f = open(fname, 'rb')
+        css = f.read().decode('utf-8')
+        css = css.replace('${version}', os.environ['TFJS_VERSION'])
+        with open(fname, 'wb') as f:
+            f.write(css.encode('utf-8')) 
+            sys.exit(0)
     else:
         sys.exit(0)
 
