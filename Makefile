@@ -1,5 +1,7 @@
 .PHONY: build download-static copy-static preprocess build-docset install clean
 
+tfjs_version = 1.1.2
+
 build: download-static preprocess build-docset
 
 download-static:
@@ -16,6 +18,9 @@ build-docset: preprocess
 
 install:
 	open js.tensorflow.org/TensorFlow.js.docset
+
+tarball:
+	tar -czvf docset-tfjs-v${tfjs_version}.tar.gz js.tensorflow.org/TensorFlow.js.docset
 	
 clean:
-	rm -rf *.css js.tensorflow.org
+	rm -rf *.css js.tensorflow.org *.tar.gz

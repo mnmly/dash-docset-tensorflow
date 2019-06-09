@@ -1,4 +1,4 @@
-
-*.tgz
+*.tar.gz
 www.tensorflow.org
 js.tensorflow.org
+.DS_Store
